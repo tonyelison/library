@@ -1,4 +1,4 @@
-const myLibrary = ['book1', 'book2', 'book3'];
+const myLibrary = [];
 
 function Book(title, author, pages, read) {
   this.title = title;
@@ -31,9 +31,15 @@ function addBook(book) {
   displayBook(book);
 }
 
-const addButton = document.querySelector('button');
-addButton.addEventListener('click', () => {
-  addBook(prompt('book title please:', 'default'));
+const submitFormBtn = document.querySelector('form button');
+submitFormBtn.addEventListener('click', (event) => {
+  const form = document.forms.AddBookForm;
+  const formData = new FormData(form);
+  const book = new Book(formData.get('title'), formData.get('author'), formData.get('pages'), formData.get('read'));
+  addBook(book.title);
+
+  form.reset();
+  event.preventDefault();
 });
 
 displayAllBooks();
