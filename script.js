@@ -17,8 +17,22 @@ const bookList = document.querySelector('.book-list');
 
 function displayBook(book) {
   const card = document.createElement('div');
-  card.classList.add('book');
-  card.textContent = book;
+  card.classList.add('card');
+
+  Object.keys(book).forEach((key) => {
+    const bookAttr = document.createElement('div');
+    bookAttr.classList.add('book-attribute');
+
+    const label = document.createElement('label');
+    label.textContent = `${key}:`;
+
+    const value = document.createElement('span');
+    value.textContent = book[key];
+
+    bookAttr.append(label, value);
+    card.appendChild(bookAttr);
+  });
+
   bookList.appendChild(card);
 }
 
@@ -36,7 +50,7 @@ submitFormBtn.addEventListener('click', (event) => {
   const form = document.forms.AddBookForm;
   const formData = new FormData(form);
   const book = new Book(formData.get('title'), formData.get('author'), formData.get('pages'), formData.get('read'));
-  addBook(book.title);
+  addBook(book);
 
   form.reset();
   event.preventDefault();
