@@ -1,6 +1,7 @@
 const myLibrary = [];
 
 function Book(title, author, pages, read) {
+  this.id = myLibrary.length;
   this.title = title;
   this.author = author;
   this.pages = pages;
@@ -15,9 +16,17 @@ Book.prototype.info = function () {
 
 const bookList = document.querySelector('.book-list');
 
+function removeBook(book) {
+  const index = myLibrary.indexOf(book);
+  myLibrary.splice(index, 1);
+  const bookCard = document.getElementById(`book-${book.id}`);
+  bookList.removeChild(bookCard);
+}
+
 function displayBook(book) {
   const card = document.createElement('div');
   card.classList.add('card');
+  card.id = `book-${book.id}`;
 
   Object.keys(book).forEach((key) => {
     const bookAttr = document.createElement('div');
@@ -32,6 +41,13 @@ function displayBook(book) {
     bookAttr.append(label, value);
     card.appendChild(bookAttr);
   });
+
+  const removeBtn = document.createElement('button');
+  removeBtn.classList.add('remove-btn');
+  removeBtn.textContent = 'Remove Book';
+  removeBtn.addEventListener('click', () => removeBook(book));
+
+  card.appendChild(removeBtn);
 
   bookList.appendChild(card);
 }
