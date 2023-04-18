@@ -13,14 +13,27 @@ Book.prototype.info = function () {
   }`;
 };
 
-function displayBooks() {
-  const bookList = document.querySelector('.book-list');
-  myLibrary.forEach((book) => {
-    const card = document.createElement('div');
-    card.classList.add('book');
-    card.textContent = book;
-    bookList.appendChild(card);
-  });
+const bookList = document.querySelector('.book-list');
+
+function displayBook(book) {
+  const card = document.createElement('div');
+  card.classList.add('book');
+  card.textContent = book;
+  bookList.appendChild(card);
 }
 
-displayBooks();
+function displayAllBooks() {
+  myLibrary.forEach((book) => displayBook(book));
+}
+
+function addBook(book) {
+  myLibrary.push(book);
+  displayBook(book);
+}
+
+const addButton = document.querySelector('button');
+addButton.addEventListener('click', () => {
+  addBook(prompt('book title please:', 'default'));
+});
+
+displayAllBooks();
