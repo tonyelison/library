@@ -40,9 +40,21 @@ form {
   max-width: 300px;
 }
 
-form h2 {
-  text-align: center;
+form header {
   margin-bottom: 15px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form button.close {
+  margin: 0;
+  padding: 6px 12px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  font-size: 1.5em;
 }
 
 form .form-field {
