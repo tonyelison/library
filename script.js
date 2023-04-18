@@ -45,6 +45,13 @@ function addBook(book) {
   displayBook(book);
 }
 
+const formModal = document.querySelector('.modal-overlay');
+
+const openFormBtn = document.querySelector('.open-form-btn');
+openFormBtn.addEventListener('click', () => {
+  formModal.style.display = 'flex';
+});
+
 const submitFormBtn = document.querySelector('form button');
 submitFormBtn.addEventListener('click', (event) => {
   const form = document.forms.AddBookForm;
@@ -52,6 +59,7 @@ submitFormBtn.addEventListener('click', (event) => {
   const book = new Book(formData.get('title'), formData.get('author'), formData.get('pages'), formData.get('read'));
   addBook(book);
 
+  formModal.style.display = 'none';
   form.reset();
   event.preventDefault();
 });
