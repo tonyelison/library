@@ -23,6 +23,12 @@ function removeBook(book) {
   bookList.removeChild(bookCard);
 }
 
+function toggleRead(book) {
+  book.read = !book.read;
+  const readStatusEl = document.querySelector(`#book-${book.id} .book-attribute.read span`);
+  readStatusEl.textContent = book.read;
+}
+
 function displayBook(book) {
   const card = document.createElement('div');
   card.classList.add('card');
@@ -30,7 +36,7 @@ function displayBook(book) {
 
   Object.keys(book).forEach((key) => {
     const bookAttr = document.createElement('div');
-    bookAttr.classList.add('book-attribute');
+    bookAttr.classList.add('book-attribute', key);
 
     const label = document.createElement('label');
     label.textContent = `${key}:`;
@@ -42,12 +48,17 @@ function displayBook(book) {
     card.appendChild(bookAttr);
   });
 
+  const readToggle = document.createElement('button');
+  readToggle.classList.add('read-toggle');
+  readToggle.textContent = 'Toggle Read';
+  readToggle.addEventListener('click', () => toggleRead(book));
+
   const removeBtn = document.createElement('button');
   removeBtn.classList.add('remove-btn');
   removeBtn.textContent = 'Remove Book';
   removeBtn.addEventListener('click', () => removeBook(book));
 
-  card.appendChild(removeBtn);
+  card.append(readToggle, removeBtn);
 
   bookList.appendChild(card);
 }
