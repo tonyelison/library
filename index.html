@@ -31,10 +31,13 @@
         <label for="pages">Number of Pages</label>
         <input type="text" name="pages" id="pages">
       </div>
-      <div class="form-field">
-        <label for="read">Read</label>
-        <input type="text" name="read" id="read">
-      </div>
+      <fieldset class="form-field">
+        <legend>Was this book read?</legend>
+        <input id="read" name="read" type="radio" value="true">
+        <label for="read">Yes</label>
+        <input id="unread" name="read" type="radio" value="false">
+        <label for="unread">No</label>
+      </fieldset>
       <button type="submit">Add</button>
     </form>
   </div>

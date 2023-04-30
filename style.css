@@ -65,8 +65,32 @@ form label {
   display: block;
 }
 
-form input {
+form :not(fieldset).form-field input {
   width: 100%;
+}
+
+fieldset {
+  border: none;
+}
+
+fieldset legend {
+  padding-bottom: 5px;
+}
+
+fieldset input, fieldset label {
+  float: left;
+}
+
+fieldset input#read {
+  margin-left: 8px;
+}
+
+fieldset input#unread {
+  margin-left: 20px;
+}
+
+fieldset label {
+  margin-left: 5px;
 }
 
 form button {
