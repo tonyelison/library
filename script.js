@@ -92,4 +92,11 @@ closeFormBtn.addEventListener('click', () => {
   form.reset();
 });
 
+const pageNumInput = document.querySelector('form input[type=number]');
+pageNumInput.addEventListener('keydown', (e) => {
+  if (e.key === '.') {
+    e.preventDefault();
+  }
+});
+
 displayAllBooks();
