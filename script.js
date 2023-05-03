@@ -1,18 +1,18 @@
 const myLibrary = [];
 
-function Book(id, title, author, pages, read) {
-  this.id = id;
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.read = read;
-}
+class Book {
+  constructor(id, title, author, pages, read) {
+    this.id = id;
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = read;
+  }
 
-Book.prototype.info = function () {
-  return `${this.title} by ${this.author}, ${this.pages} pages, ${
-    this.read ? 'was read' : 'not read yet'
-  }`;
-};
+  info() {
+    return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? 'was read' : 'not read yet'}`;
+  }
+}
 
 const bookList = document.querySelector('.book-list');
 
